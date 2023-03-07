@@ -6,3 +6,6 @@ pizza
 marina
 fim do curso
 sushi
+celular
+agua
+enter
