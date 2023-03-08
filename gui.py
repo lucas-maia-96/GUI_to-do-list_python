@@ -6,20 +6,28 @@ sg.theme("DarkPurple4")
 
 clock = sg.Text('', key='clock')
 label = sg.Text("Type in a To-Do")
-input_box = sg.InputText(tooltip="Enter todo", key="todo")
-add_button = sg.Button("Add", size=10)
+input_box = sg.InputText(tooltip="Enter todo", key="todo", size=40)
+add_button = sg.Button("Add", size=8, border_width=4)
 list_box = sg.Listbox(values=functions.get_todos(), key="todos", 
-                      enable_events=True, size=[45, 10])
-edit_button = sg.Button("Edit", size=10)
-complete_button = sg.Button("Complete", size=10)
-exit_button = sg.Button("Exit", size=10 )
+                      enable_events=True, size=[40, 10], expand_x=True)
+edit_button = sg.Button("Edit", size=8, border_width=4, pad=(0, 40))
+complete_button = sg.Button("Complete", size=8, border_width=4, pad=(0, 40))
+exit_button = sg.Button("Exit", size=8, border_width=4, pad=4)
+
+frist_column = [[sg.Frame('', [[clock],
+                             [label],
+                             [input_box, add_button],
+                             [list_box],
+                             [exit_button]], border_width=0)]]
+
+edit_complete = [[sg.Frame('' , [[edit_button], [ complete_button]], border_width=0, )]]
+
+
+
+layout = [[sg.Column(frist_column, element_justification='c'), sg.Column(edit_complete, element_justification='c')]]
 
 window = sg.Window("My To-Do App", 
-                   layout=[[clock], 
-                           [label], 
-                           [input_box, add_button],
-                           [list_box, edit_button, complete_button], 
-                           [exit_button]], 
+                   layout=layout, 
                    font=('Helvetica', 14))
 while True:
     event, values = window.read(timeout=500)
