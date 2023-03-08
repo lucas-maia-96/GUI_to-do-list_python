@@ -25,7 +25,7 @@ while True:
         functions.write_todos(todos)
         window['todos'].update(values=todos)
     elif event == "Edit":
-        todo_to_edit = values["todos"][0]
+        todo_to_edit = values["todos"][0][:-1]
         new_todo = values["todo"]
         todos = functions.get_todos()
         index = todos.index(todo_to_edit)
